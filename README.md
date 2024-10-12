@@ -1,44 +1,54 @@
-Financial Records Entry System 
+# Financial Records Entry System
 
 This application allows you to track your financial transactions (credits and debits) on a single account and view the running total.
 
-Overview
+## Overview
 
-- A Front End SPA powered by Typescript
-- A Flask backend 
-- A postgres database
-- Dockerized
+This application consists of:
 
-1. Front end application
+- **Front End**: A Single Page Application (SPA) built with TypeScript.
+- **Backend**: A Flask-based server.
+- **Database**: PostgreSQL.
+- **Containerization**: Dockerized for easy deployment.
 
-- Displays an account balance
-- Lists recorded transactions
-- Adds a new transaction
-- Modifiable transactions
-- CSS
+### Features
 
-2. Backend application
+#### Front End Application
 
-- Endpoints to create transactions, retrieve all transactions, retreive an individual transaction, modify a transaction and remove a transaction
-- Validates all receives payloads
-- Swagger UI available
+- Displays the current account balance.
+- Lists all recorded transactions.
+- Allows you to add new transactions.
+- Enables modification of existing transactions.
+- Styled with CSS for a clean user interface.
 
-3. Database
+#### Backend Application
 
-- PostgreSQL database
-- SQLAlchemy ORM
-- Flask-Migrate for migrations
+- **API Endpoints**:
+  - Create transactions
+  - Retrieve all transactions
+  - Retrieve a specific transaction
+  - Modify a transaction
+  - Remove a transaction
+- Validates all received payloads to ensure data integrity.
+- Includes Swagger UI for API documentation.
 
-4. Extras
+#### Database
 
-- Automated tests
+- Utilizes PostgreSQL.
+- SQLAlchemy Object Relational Mapper.
+- Migrations with Flask-Migrate.
+
+### Extras
+
+- Automated tests.
 - Error handling
 
-Getting started
+## Getting Started
 
-clone this repository
-cd tymebankapp
-docker compose up --build
-navigate to localhost:5000 for main application
-navigate to localhost:5000/apidocs for swagger documentation
-
+   ```bash
+  > git clone [repository-url]
+  > cd tyme-bank-transactions
+  > docker compose up --build
+  > docker compose -f docker-compose.migrate.yml run -e MESSAGE="<ENTER MIGRATION MESSAGE>" migrate
+   ```
+   - Navigate to http://localhost:5000 for UI, and http://localhost:5000/apidocs for swagger docs. 
