@@ -1,0 +1,17 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY core/static/package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm install -g typescript
+
+WORKDIR /app/core/static
+
+RUN tsc
+
+WORKDIR /app

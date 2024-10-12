@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="{{ url_for('static', filename='dist/scripts.js') }}"></script>
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <title>Brakpan Community Mutual</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Brakpan Community Mutual</div>
+    </header>
+
+    <main class="dashboard">
+        <div class="balance-card">
+            <h1>{{data.account_name}} Balance</h1>
+            <p id="balance">R {{data.account_balance}}</p>
+            <button id="showCreateTransactionModal">Create Transaction</button>
+        </div>
+
+        <div class="transactions-card">
+            <h2>Recent Transactions</h2>
+            <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionList">
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+    </main>
+   
+</body>
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div class="modal__overlay">
+        <div class="modal__container">
+            <header class="modal__header">
+                <h4 class="modal__title">Modify this transaction</h4>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close>x</button>
+            </header>
+            <main class="modal__content" id="modalContent">
+
+            </main>
+            <footer class="modal__footer">
+                <button id="deleteTransaction" class="modal__btn" data-micromodal-close aria-label="Remove this transaction">Delete Transaction</button>
+                <button id="updateTransaction" class="modal__btn" data-micromodal-close aria-label="Edit this transaction">Save Changes</button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="modal-2" aria-hidden="true">
+    <div class="modal__overlay">
+        <div class="modal__container">
+            <header class="modal__header">
+                <h4 class="modal__title">Create Transaction</h4>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close>x</button>
+            </header>
+            <main class="modal__content" id="modalContent2">
+
+            </main>
+            <footer class="modal__footer">
+                <button id="createTransaction" class="modal__btn" data-micromodal-close aria-label="Create transaction">Create Transaction</button>
+            </footer>
+        </div>
+    </div>
+</div>  
+</html>

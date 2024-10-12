@@ -1,0 +1,35 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DATABASE_URL=postgres://admin:password@db:5432/tymebank
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=tymebank
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  typescript-compiler:
+    build:
+      context: .
+      dockerfile: dockerfile.typescript
+    volumes:
+      - .:/app
+    command: [ "npm", "run", "build" ]
+    working_dir: /app/core/static
+volumes:
+  pgdata:

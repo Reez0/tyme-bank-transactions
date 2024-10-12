@@ -1,0 +1,18 @@
+services:
+  migrate:
+    build: .
+    environment:
+      - FLASK_APP=core/app.py
+      - FLASK_ENV=development
+      - DATABASE_URL=postgres://admin:password@db:5432/tymebank
+    volumes:
+      - .:/app
+    command: >
+      bash -c " if [ ! -d migrations ]; then
+          echo 'Initializing migrations...';
+          flask db init;
+      else
+          echo 'Migrations directory already exists. Skipping initialization.';
+      fi; echo 'Creating migration...'; flask db migrate -m '$1'; echo 'Upgrading database...'; flask db upgrade; " 
+
+#docker compose -f docker-compose.migrate.yml run -e MESSAGE="Added tables" migrate
