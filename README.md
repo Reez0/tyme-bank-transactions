@@ -49,6 +49,7 @@ This application consists of:
   > git clone [repository-url]
   > cd tyme-bank-transactions
   > docker compose up --build
-  > docker compose -f docker-compose.migrate.yml run -e MESSAGE="<ENTER MIGRATION MESSAGE>" migrate
+    (In a separate terminal window once previous command is completed) 
+  > docker compose -f docker-compose.migrate.yml run --rm -e MESSAGE="Initial Migration" migrate
    ```
    - Navigate to http://localhost:5000 for UI, and http://localhost:5000/apidocs for swagger docs. 

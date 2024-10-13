@@ -15,4 +15,4 @@ services:
           echo 'Migrations directory already exists. Skipping initialization.';
       fi; echo 'Creating migration...'; flask db migrate -m '$1'; echo 'Upgrading database...'; flask db upgrade; " 
 
-#docker compose -f docker-compose.migrate.yml run -e MESSAGE="Added tables" migrate
+#docker compose -f docker-compose.migrate.yml run --rm -e MESSAGE="Added tables" migrate

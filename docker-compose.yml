@@ -23,7 +23,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  typescript-compiler:
+  ts:
     build:
       context: .
       dockerfile: dockerfile.typescript
