@@ -37,13 +37,24 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    text-align: center;
+    /*! text-align: center; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .balance-card h2 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     font-size: 24px;
+}
+
+.extra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .balance-card p {
@@ -173,6 +184,10 @@ td {
 
 .handle-transaction {
     cursor: pointer;
+}
+
+.handle-transaction:hover {
+    background-color: lightgray;
 }
 
 .transactions-card small {
@@ -381,14 +396,10 @@ td {
 
 .transaction-form textarea {
     resize: vertical;
-    /* Allow vertical resizing */
-    /*! height: 100px; */
-    /* Set a default height */
 }
 
 .transaction-form button {
     background-color: #0056b3;
-    /* Darker Blue */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -401,5 +412,4 @@ td {
 
 .transaction-form button:hover {
     background-color: #004494;
-    /* Even darker blue on hover */
 }

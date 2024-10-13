@@ -58,10 +58,8 @@ def get_transaction(transaction_id: int) -> Optional[dict]:
 
 def remove_transaction(transaction_id: int) -> None:
     try:
-        rows_deleted = db.session.query(Transaction).filter(
+        db.session.query(Transaction).filter(
             Transaction.id == transaction_id).delete()
-        if rows_deleted == 0:
-            raise ValueError("Transaction not found.")
         db.session.commit()
     except Exception as e:
         db.session.rollback()
@@ -70,14 +68,12 @@ def remove_transaction(transaction_id: int) -> None:
 
 def update_transaction(transaction_id: int, date: datetime, transaction_type: str, description: str, amount: Union[int, float]) -> None:
     try:
-        rows_updated = db.session.query(Transaction).filter(Transaction.id == transaction_id).update({
+        db.session.query(Transaction).filter(Transaction.id == transaction_id).update({
             "date": date,
             "type": transaction_type,
             "description": description,
             "amount": amount
         })
-        if rows_updated == 0:
-            raise ValueError("Transaction not found.")
         db.session.commit()
     except Exception as e:
         db.session.rollback()

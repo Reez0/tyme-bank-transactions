@@ -134,7 +134,8 @@ def get_single_transaction(transaction_id: int) -> Dict[str, Any]:
             return make_response(status=200, message=None, success=True, data=transaction)
         else:
             return make_response(status=404, message="This transaction does not exist", success=False)
-    except Exception:
+    except Exception as e:
+        print(traceback.format_exc(), flush=True)
         return make_response(status=500, message='Unable to retrieve transaction', success=False)
 
 
@@ -183,6 +184,7 @@ def modify_transaction(transaction_id: int) -> Dict[str, Any]:
         )
         return make_response(status=200, message="Transaction updated successfully", success=True, data=None)
     except Exception as e:
+        print(traceback.format_exc(), flush=True)
         return make_response(status=400, message="Unable to update transaction: " + str(e), success=False)
 
 
@@ -207,5 +209,6 @@ def delete_transaction(transaction_id: int) -> Dict[str, Any]:
     try:
         remove_transaction(transaction_id)
         return make_response(status=200, message="Transaction deleted successfully", success=True, data=None)
-    except Exception:
+    except Exception as e:
+        print(traceback.format_exc(), flush=True)
         return make_response(status=500, message='Unable to delete transaction', success=False)

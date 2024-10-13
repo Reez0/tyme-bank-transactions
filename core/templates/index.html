@@ -17,10 +17,16 @@
 
     <main class="dashboard">
         <div class="balance-card">
-            <h1>{{data.account_name}} Balance</h1>
-            <p id="balance">R {{data.account_balance}}</p>
-            <button id="showCreateTransactionModal">Create Transaction</button>
-        </div>
+            <div class="balance" style="display: flex;flex-direction: column;">
+                <h1>Account Balance</h1>
+                <p id="balance">R {{ '{:,.2f}'.format(data.account_balance) }}</p>
+                <button id="showCreateTransactionModal">Create Transaction</button>
+            </div>
+            <div class="extra">
+              <img src="{{ url_for('static', filename='img/card.png') }}"">
+              <small>Account Number: 001</small>
+            </div>
+          </div>
 
         <div class="transactions-card">
             <h2>Recent Transactions</h2>

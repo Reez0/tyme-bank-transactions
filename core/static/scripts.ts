@@ -214,6 +214,7 @@ async function retrieveTransactions(): Promise<void> {
 
         }
         addTransactionEvents();
+        updateBalance();
     } catch (error) {
         console.error('Fetch error:', error);
         alert("Something went wrong");
@@ -272,7 +273,6 @@ async function updateTransaction(transactionId: number): Promise<void> {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
-
         const responseData: TransactionRetrievalResponse = await handleResponse(response);
         if (responseData.success) {
             // @ts-ignore
@@ -319,6 +319,5 @@ async function handleResponse(response: Response): Promise<any> {
         });
         return;
     }
-    updateBalance();
     return await response.json();
 }
